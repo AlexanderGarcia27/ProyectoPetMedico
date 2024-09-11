@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import Login from './components/login'
-import './App.css'
+import { useState } from 'react';
+import Login from './components/login';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <Login/>
-    </>
-  )
+    <div className="h-screen w-screen flex justify-center items-center text-center">
+      <div className="max-w-3xl w-full px-3">
+        <Login />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
