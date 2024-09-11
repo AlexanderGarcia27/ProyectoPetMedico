@@ -13,7 +13,7 @@ export default function Login() {
         </div>
         <div className="w-full sm:w-1/2 flex flex-col justify-center px-6 py-12 lg:px-8 ml-4 relative">
           <div className="absolute top-4 right-4">
-            <span className="text-lg font-semibold text-gray-900">PetMedico</span>
+            <span className="text-lg font-semibold text-gray-900">PetMedic</span>
           </div>
           <div className="bg-white mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form action="#" method="POST" className="space-y-6">
