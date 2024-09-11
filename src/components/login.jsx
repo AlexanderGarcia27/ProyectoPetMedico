@@ -22,7 +22,7 @@ export default function Login() {
                   htmlFor="text"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Ingrese su usuario
+                  Usuario
                 </label>
 
                 <div className="mt-2">
@@ -42,7 +42,7 @@ export default function Login() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Ingrese su contraseña
+                  Contraseña
                 </label>
 
                 <div className="mt-2">
