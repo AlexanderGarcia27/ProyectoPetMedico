@@ -1,9 +1,15 @@
 import logo1 from "../assets/logo1.jpg";
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate(); 
+  const handleLogin = () => {
+    navigate('/inicio'); 
+  };
+
   return (
-    <div className="bg-white flex min-h-full flex-1 items-center justify-center px-6 py-12 lg:px-8 shadow-md shadow-gray-400">
-      <div className="flex flex-col sm:flex-row w-full max-w-4xl">
+    <div className="bg-white flex h-screen w-screen items-center justify-center px-6 py-12 lg:px-8 text-center">
+      <div className="flex flex-col sm:flex-row  max-w-3xl w-full px-3 shadow-lg shadow-gray-400 border border-gray-300 rounded-lg">
         <div className="hidden sm:flex sm:w-1/2 justify-center items-center">
           <img
             src={logo1}
@@ -72,7 +78,8 @@ export default function Login() {
               <div className="flex justify-center">
                 <div className="w-full max-w-xs">
                   <button
-                    type="submit"
+                    type="button" // Cambiado a "button" para evitar el comportamiento predeterminado de "submit"
+                    onClick={handleLogin} // Agregamos el onClick para navegar al hacer clic
                     className="flex w-full justify-center bg-gray-500 text-white hover:bg-black hover:text-white px-6 py-2 text-sm transition-all duration-300 rounded-3xl"
                   >
                     Log in

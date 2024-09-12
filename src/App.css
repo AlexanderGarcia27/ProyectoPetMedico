@@ -1,4 +1,5 @@
-*{
-  background-color: white;
+body {
+  @apply bg-fondo;
 }
+
 
