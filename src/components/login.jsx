@@ -32,7 +32,7 @@ export default function Login() {
           </div>
 
           <div className="bg-white mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form action="https://backend-veterinaria-ew45.onrender.com/auth/login" method="POST" className="space-y-6">
               <div className="flex justify-center">
                 <div className="w-full max-w-xs">
                   <label
