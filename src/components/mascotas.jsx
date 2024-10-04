@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import logo3 from "../assets/logo3.png";
-import { useNavigate } from 'react-router-dom';
 
-export default function Inicio() {
+export default function Mascotas() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-    };
-    const navigate = useNavigate(); 
-    const handleLogin = () => {
-        navigate('/mascotas'); 
     };
 
     return (
@@ -22,10 +17,6 @@ export default function Inicio() {
                         <span className="text-2xl font-semibold whitespace-nowrap dark:text-black">PetMedico</span>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <select className="p-2 bg-white rounded-lg text-sm text-black">
-                            <option value="option1">Clientes</option>
-                            <option value="option2">Mascotas</option>
-                        </select>
                         <div className="relative hidden md:block">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <svg
@@ -70,7 +61,7 @@ export default function Inicio() {
                                         <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black" aria-current="page">Clientes</a>
                                     </li>
                                     <li>
-                                        <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black " onClick={handleLogin} >Mascotas</a>
+                                        <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black">Mascotas</a>
                                     </li>
                                     <li>
                                         <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black">Servicios</a>
@@ -84,72 +75,23 @@ export default function Inicio() {
                     </div>
                 </div>
             </nav>
-            <div className="h-screen w-screen flex justify-center items-center min-h-screen bg-gray-50">
-                <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-[1200px]">
-                    <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 border-collapse">
-                        <thead className="text-xs uppercase  bg-primario text-black">
-                            <tr>
-                                <th scope="col" className="px-6 py-3 border border-black 200">
-                                    Cliente
-                                </th>
-                                <th scope="col" className="px-6 py-3 border border-black 200">
-                                    Mascota
-                                </th>
-                                <th scope="col" className="px-6 py-3 border border-black 200">
-                                    Descripcion
-                                </th>
-                                <th scope="col" className="px-6 py-3 border border-black 200">
-                                    Costo
-                                </th>
-                                <th scope="col" className="px-6 py-3 border border-black 200">
-                                    Precio
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="bg-fondo">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white border border-black"></th>
-                                <td className="px-6 py-4 border border-black"></td>
-                                <td className="px-6 py-4 border border-black"></td>
-                                <td className="px-6 py-4 border border-black"></td>
-                                <td className="px-6 py-4 border border-black"></td>
-                            </tr>
-                            <tr className="bg-fondo">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white border border-black">
-                                    
-                                </th>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                            </tr>
-                            <tr className="bg-fondo">
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white border border-black">
-                                    
-                                </th>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                                <td className="px-6 py-4 border border-black">
-                                    
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+            <div className="relative flex flex-col my-6 bg-primario shadow-sm border border-slate-200 rounded-lg w-96 pd-6 w-72 ">
+                <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
+                    <img src="https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg" alt="card-image" />
+                </div>
+                <div className="p-4">
+                    <h6 className="mb-2 text-slate-800 text-xl font-semibold">
+                        Nombre: 
+                    </h6>
+                </div>
+                <div className="px-4 pb-4 pt-0 mt-2">
+                    <button className="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                        Actualizar
+                    </button>
+                    <button className="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                        Eliminar
+                    </button>
                 </div>
             </div>
 
