@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo3 from "../assets/logo3.png";
 
-export default function Mascotas() {
+export default function Clientes() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -74,30 +74,6 @@ export default function Mascotas() {
                     </div>
                 </div>
             </nav>
-
-            <div className="h-screen w-screen flex justify-center items-center">
-                <div className="relative flex flex-col my-6 bg-primario shadow-sm border border-slate-200 rounded-lg pd-6 w-60">
-                    <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                        <img src="https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg" alt="card-image" />
-                        <div className="p-4">
-                            <h6 className="mb-2 text-slate-800 text-xl font-semibold">
-                                Nombre:
-                            </h6>
-                            <h6 className="mb-2 text-slate-800 text-xl font-semibold">
-                                Dueño:
-                            </h6>
-                        </div>
-                    </div>
-                    <div className="px-4 pb-4 pt-0 mt-2 flex flex-col space-y-2">
-                        <button className="rounded-md bg-white py-2 px-4 text-sm text-black dark:hover:bg-fondo" type="button">
-                            Actualizar
-                        </button>
-                        <button className="rounded-md bg-white py-2 px-4 text-sm text-black dark:hover:bg-fondo" type="button">
-                            Eliminar
-                        </button>
-                    </div>
-                </div>
-            </div>
         </>
     );
 }
