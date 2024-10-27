@@ -1,15 +1,28 @@
-import logo1 from "../assets/logo1.jpg";
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo1 from "../assets/logo1.jpg";
+import { validarFormulario } from '../validation/validarLogin';
 
 export default function Login() {
-  const navigate = useNavigate(); 
-  const handleLogin = () => {
-    navigate('/inicio'); 
+  const navigate = useNavigate();
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    const usuario = document.getElementById("text").value;
+    const contrasena = document.getElementById("password").value;
+
+    const esValido = validarFormulario(usuario, contrasena);
+
+    if (esValido) {
+      navigate('/inicio');
+    }
   };
 
   return (
     <div className="bg-white flex h-screen w-screen items-center justify-center px-6 py-12 lg:px-8 text-center">
-      <div className="flex flex-col sm:flex-row  max-w-3xl w-full px-3 shadow-lg shadow-gray-400 border border-gray-300 rounded-lg">
+      <div className="flex flex-col sm:flex-row max-w-3xl w-full px-3 shadow-lg shadow-gray-400 border border-gray-300 rounded-lg">
+        
         <div className="hidden sm:flex sm:w-1/2 justify-center items-center">
           <img
             src={logo1}
@@ -32,7 +45,7 @@ export default function Login() {
           </div>
 
           <div className="bg-white mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="https://backend-veterinaria-ew45.onrender.com/auth/login" method="POST" className="space-y-6">
+            <form onSubmit={handleLogin} className="space-y-6">
               <div className="flex justify-center">
                 <div className="w-full max-w-xs">
                   <label
@@ -78,8 +91,7 @@ export default function Login() {
               <div className="flex justify-center">
                 <div className="w-full max-w-xs">
                   <button
-                    type="button" // Cambiado a "button" para evitar el comportamiento predeterminado de "submit"
-                    onClick={handleLogin} // Agregamos el onClick para navegar al hacer clic
+                    type="submit"
                     className="flex w-full justify-center bg-gray-500 text-white hover:bg-black hover:text-white px-6 py-2 text-sm transition-all duration-300 rounded-3xl"
                   >
                     Log in
