@@ -1,79 +1,70 @@
 import React, { useState } from 'react';
-import logo3 from "../assets/logo3.png";
+import logo1 from "../assets/logo1.jpg";
 
 export default function Clientes() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleAccordion = () => {
+        setIsOpen(!isOpen);
     };
 
     return (
         <>
-            <nav className="border-gray-200 bg-primario fixed top-0 left-0 w-full z-50 shadow-md">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between pl-4">
-                    <div className="flex flex-col items-start">
-                        <img src={logo3} className="h-20" alt="Flowbite Logo" />
-                        <span className="text-2xl font-semibold whitespace-nowrap dark:text-black">PetMedico</span>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                        <div className="relative hidden md:block">
-                            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">N
-                                <svg
-                                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                                    />
-                                </svg>
-                                <span className="sr-only">Search icon</span>
-                            </div>
-                            <input
-                                type="text"
-                                id="search-navbar"
-                                className="block w-96 p-2 ps-10 text-sm rounded-lg bg-white dark:placeholder-black text-black"
-                                placeholder="Search..."
-                            />
+            <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-transparent pt-4">
+                <div className="max-w-screen-xl flex items-center justify-between pl-4">
+                    <div className="flex items-center space-x-4 flex-grow">
+                        <img src={logo1} className="h-16 w-16 rounded-full" alt="Flowbite Logo" />
+                        <div className="flex flex-col items-start">
+                            <span className="text-3xl font-kodchasan font-bold leading-5 text-texto mb-1">PET</span>
+                            <span className="text-3xl font-kodchasan font-bold leading-5 text-left text-texto">MEDICO</span>
                         </div>
-                        <button
-                            onClick={toggleMenu}
-                            className="absolute right-4 inline-flex items-center justify-center p-2 bg-white text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-fondo dark:focus:ring-gray-600"
-                            aria-controls="navbar-hamburger"
-                            aria-expanded={isMenuOpen}
-                        >
-                            <span className="sr-only">Open main menu</span>
-                            <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
-                        {isMenuOpen && (
-                            <div className="absolute top-24 right-4 bg-white border  rounded-lg shadow-lg dark:bg-fondo dark:border-gray-700">
-                                <ul className="flex flex-col p-4 space-y-2">
-                                    <li>
-                                        <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black" aria-current="page">Hola</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black">Mascotas</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black">Servicios</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-primario dark:hover:text-black">Facturas</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
+                    </div>
+                    <div className="flex px-4 py-2 rounded-[70px] overflow-hidden w-[400px] font-sans bg-white shadow-md border border-[#AAAAAA] justify-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px" className="fill-gray-600 mr-3 rotate-90">
+                            <path
+                                d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
+                            </path>
+                        </svg>
+                        <input type="text" className="w-full outline-none bg-transparent text-gray-600 text-sm" />
                     </div>
                 </div>
             </nav>
+            <div className="flex justify-center items-center h-screen w-screen mt-0">
+                <div className="relative">
+                    <div id="accordion-open" data-accordion="open" className="w-[1200px]">
+                        <h2 id="accordion-open-heading-1">
+                            <button
+                                type="button"
+                                className={`flex items-center justify-between w-full p-5 font-medium text-gray-500 bg-acordeon rounded-[20px]`}
+                                onClick={toggleAccordion}
+                                aria-expanded={isOpen}
+                                aria-controls="accordion-open-body-1"
+                            >
+                                <span className="flex items-center">
+                                    <img src={logo1} alt="Usuario" className="h-16 w-16 rounded-full mr-2" />
+                                    <div className="flex flex-col">
+                                        <span className='font-kodchasan'>NOMBRE DEL USUARIO</span>
+                                        <span className='items-start text-sm'>Teléfono: 71717177117</span>
+                                        <span className='text-sm'>Dirección: 235263273</span>
+                                    </div>
+                                </span>
+                                <svg data-accordion-icon className={`w-6 h-6 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5" />
+                                </svg>
+                            </button>
+                        </h2>
+
+                        {isOpen && (
+                            <div id="accordion-open-body-1" className="p-5 border border-t-0 border-gray-200 bg-mostrar rounded-[20px]">
+                                <p className="font-kodchasan text-texto text-[30px]">
+                                    Mascotas
+                                </p>
+                            </div>
+                        )}
+
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
