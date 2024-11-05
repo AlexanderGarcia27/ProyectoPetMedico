@@ -1,7 +1,9 @@
+// src/components/Login.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo1 from "../assets/logo1.jpg";
 import { validarFormulario } from '../validation/validarLogin';
+import { autenticarUsuario } from '../fetch/login';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -9,20 +11,31 @@ export default function Login() {
   const handleLogin = (event) => {
     event.preventDefault();
 
-    const usuario = document.getElementById("text").value;
+    // Obtiene los valores de los campos de usuario y contraseña
+    const usuario = document.getElementById("user").value;
     const contrasena = document.getElementById("password").value;
 
+    // Valida el formulario antes de hacer la solicitud
     const esValido = validarFormulario(usuario, contrasena);
 
     if (esValido) {
-      navigate('/inicio');
+      // Llama a la función de autenticación
+      autenticarUsuario(usuario, contrasena)
+        .then(data => {
+          if (data) {
+            // Si la autenticación es exitosa, redirige al usuario a la página de inicio
+            navigate('/inicio');
+          }
+        })
+        .catch(error => {
+          // Manejo de errores ya está en la función `autenticarUsuario`
+        });
     }
   };
 
   return (
     <div className="bg-white flex h-screen w-screen items-center justify-center px-6 py-12 lg:px-8 text-center">
       <div className="flex flex-col sm:flex-row max-w-3xl w-full px-3 shadow-lg shadow-gray-400 border border-gray-300 rounded-lg">
-        
         <div className="hidden sm:flex sm:w-1/2 justify-center items-center">
           <img
             src={logo1}
@@ -49,14 +62,14 @@ export default function Login() {
               <div className="flex justify-center">
                 <div className="w-full max-w-xs">
                   <label
-                    htmlFor="text"
+                    htmlFor="user"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
                     Usuario
                   </label>
                   <div className="mt-2">
                     <input
-                      id="text"
+                      id="user"
                       name="text"
                       type="text"
                       required

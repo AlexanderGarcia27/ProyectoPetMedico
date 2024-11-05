@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import logo3 from "../assets/logo3.png";
+import imgDelete from "../assets/eliminar.png";
+import imgUpdate from "../assets/actualizar.png";
 
 export default function Mascotas() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,7 +78,7 @@ export default function Mascotas() {
             </nav>
 
             <div className="h-screen w-screen flex justify-center items-center">
-                <div className="relative flex flex-col my-6 bg-primario shadow-sm border border-slate-200 rounded-lg pd-6 w-60">
+                <div className="relative flex flex-col my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] pd-8 w-60 h-80">
                     <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
                         <img src="https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg" alt="card-image" />
                         <div className="p-4">
@@ -88,13 +90,9 @@ export default function Mascotas() {
                             </h6>
                         </div>
                     </div>
-                    <div className="px-4 pb-4 pt-0 mt-2 flex flex-col space-y-2">
-                        <button className="rounded-md bg-white py-2 px-4 text-sm text-black dark:hover:bg-fondo" type="button">
-                            Actualizar
-                        </button>
-                        <button className="rounded-md bg-white py-2 px-4 text-sm text-black dark:hover:bg-fondo" type="button">
-                            Eliminar
-                        </button>
+                    <div className="flex justify-center items-center space-x-5">
+                        <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete" />
+                        <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" />
                     </div>
                 </div>
             </div>
