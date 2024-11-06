@@ -40,20 +40,24 @@ export default function Clientes() {
                                 aria-expanded={isOpen}
                                 aria-controls="accordion-open-body-1"
                             >
-                                <span className="flex items-center justify-between w-full">
-                                    <div className="flex items-center">
-                                        <img src={logo1} alt="Usuario" className="h-16 w-16 rounded-full" />
-                                        <div className="flex flex-col ml-2"> {/* Añadido ml-2 para espacio reducido */}
-                                            <span className='font-kodchasan'>NOMBRE DEL USUARIO</span>
-                                            <span className='items-start text-sm'>Teléfono: 71717177117</span>
-                                            <span className='text-sm'>Dirección: 235263273</span>
-                                        </div>
+                                <span className="flex items-center">
+                                    <img src={logo1} alt="Usuario" className="h-16 w-16 rounded-full" />
+                                    <div className="flex flex-col ml-2">
+                                        <span className='font-kodchasan text-2xl'>NOMBRE DEL USUARIO</span>
+                                        {isOpen && (
+                                            <>
+                                                <span className='items-start text-sm'>Teléfono: 71717177117</span>
+                                                <span className='text-sm'>Dirección: 235263273</span>
+                                            </>
+                                        )}
                                     </div>
+                                </span>
+                                {isOpen && (
                                     <div className="flex items-center space-x-1 ml-2">
                                         <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete" />
                                         <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" />
                                     </div>
-                                </span>
+                                )}
                                 <svg data-accordion-icon className={`w-6 h-6 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5" />
                                 </svg>
@@ -61,14 +65,14 @@ export default function Clientes() {
                         </h2>
 
                         {isOpen && (
-                            <div id="accordion-open-body-1" className="p-5 border border-t-0 border-gray-200 bg-mostrar rounded-[20px]">
+                            <div id="accordion-open-body-1" className="p-5 border border-t-0 border-gray-200 bg-mostrar rounded-[20px] overflow-y-auto max-h-[400px]">
                                 <p className="font-kodchasan text-texto text-[30px]">
                                     Mascotas
                                 </p>
                                 <div className="flex justify-center items-center mt-4">
-                                    <div className="relative flex justify-items-center flex-col my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-4 w-60 h-64">
+                                    <div className="relative flex justify-items-center flex-col my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-4 w-60 h-72">
                                         <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                                            <img src="https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg" alt="card-image" className=" flex justify-center h-20 w-20" /> {/* Añadir object-cover para que la imagen se ajuste */}
+                                            <img src="https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg" alt="card-image" className="flex justify-center items-center object-cover" />
                                             <div className="p-4">
                                                 <h6 className="mb-2 text-slate-800 text-xl font-semibold">
                                                     Nombre:
