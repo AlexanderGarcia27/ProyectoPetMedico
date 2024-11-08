@@ -2,7 +2,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo1 from "../assets/logo1.jpg";
-import { validarFormulario } from '../validation/validarLogin';
 import { autenticarUsuario } from '../fetch/login';
 
 export default function Login() {

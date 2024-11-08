@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo1 from "../assets/logo1.jpg";
 import imgDelete from "../assets/eliminar.png";
 import imgUpdate from "../assets/actualizar.png";
+import mas from "../assets/simbolomas.png";
 
 export default function Clientes() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function Clientes() {
 
     return (
         <>
+            {/* Nav fijo */}
             <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-transparent pt-4">
                 <div className="max-w-screen-xl flex items-center justify-between pl-4">
                     <div className="flex items-center space-x-4 flex-grow">
@@ -29,7 +31,7 @@ export default function Clientes() {
                     </div>
                 </div>
             </nav>
-            <div className="flex justify-center items-center h-screen w-screen mt-0">
+            <div className="pt-[180px] flex justify-center items-start min-h-screen w-screen">
                 <div className="relative">
                     <div id="accordion-open" data-accordion="open" className="w-[1200px]">
                         <h2 id="accordion-open-heading-1">
@@ -65,14 +67,15 @@ export default function Clientes() {
                         </h2>
 
                         {isOpen && (
-                            <div id="accordion-open-body-1" className="p-5 border border-t-0 border-gray-200 bg-mostrar rounded-[20px] overflow-y-auto max-h-[400px]">
-                                <p className="font-kodchasan text-texto text-[30px]">
-                                    Mascotas
-                                </p>
-                                <div className="flex justify-center items-center mt-4">
-                                    <div className="relative flex justify-items-center flex-col my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-4 w-60 h-72">
-                                        <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                                            <img src="https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg" alt="card-image" className="flex justify-center items-center object-cover" />
+                            <div id="accordion-open-body-1" className="p-5 border border-t-0 border-gray-200 bg-mostrar rounded-[20px] overflow-y-auto max-h-[500px]">
+                                <div className="flex items-center space-x-2">
+                                    <p className="font-kodchasan text-texto text-[30px]">Mascotas</p>
+                                    <img src={mas} className="h-6 w-6 rounded-full" alt="Add" />
+                                </div>
+                                <div className="flex justify-start items-center p-3">
+                                    <div className="relative flex flex-col bg-primario shadow-sm border border-slate-200 rounded-[20px] p-4 w-60 h-80">
+                                        <div className="relative h-56 overflow-hidden text-white rounded-md">
+                                            <img src="https://static.fundacion-affinity.org/sites/default/files/los-10-sonidos-principales-del-perro.jpg" alt="Pet" className="flex justify-center items-center object-cover" />
                                             <div className="p-4">
                                                 <h6 className="mb-2 text-slate-800 text-xl font-semibold">
                                                     Nombre:
@@ -82,7 +85,7 @@ export default function Clientes() {
                                                 </h6>
                                             </div>
                                         </div>
-                                        <div className="flex justify-center items-center space-x-5">
+                                        <div className="flex justify-center space-x-5">
                                             <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete" />
                                             <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" />
                                         </div>
