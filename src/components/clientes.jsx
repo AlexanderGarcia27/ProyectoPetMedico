@@ -3,14 +3,20 @@ import logo1 from "../assets/logo1.jpg";
 import imgDelete from "../assets/eliminar.png";
 import imgUpdate from "../assets/actualizar.png";
 import mas from "../assets/simbolomas.png";
+import AgregarMascotasClienteModal from './modales/AgregarMascotasClienteModal.jsx';
 
 export default function Clientes() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const toggleAccordion = () => {
         setIsOpen(!isOpen);
     };
-
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     return (
         <>
             {/* Nav fijo */}
@@ -57,7 +63,7 @@ export default function Clientes() {
                                 {isOpen && (
                                     <div className="flex items-center space-x-1 ml-2">
                                         <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete" />
-                                        <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" />
+                                        <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update"/>
                                     </div>
                                 )}
                                 <svg data-accordion-icon className={`w-6 h-6 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -70,7 +76,7 @@ export default function Clientes() {
                             <div id="accordion-open-body-1" className="p-5 border border-t-0 border-gray-200 bg-mostrar rounded-[20px] overflow-y-auto max-h-[500px]">
                                 <div className="flex items-center space-x-2">
                                     <p className="font-kodchasan text-texto text-[30px]">Mascotas</p>
-                                    <img src={mas} className="h-6 w-6 rounded-full" alt="Add" />
+                                    <img src={mas} className="h-6 w-6 rounded-full" alt="Add" onClick={openModal} />
                                 </div>
                                 <div className="flex justify-start items-center p-3">
                                     <div className="relative flex flex-col bg-primario shadow-sm border border-slate-200 rounded-[20px] p-4 w-60 h-80">
@@ -86,8 +92,9 @@ export default function Clientes() {
                                             </div>
                                         </div>
                                         <div className="flex justify-center space-x-5">
-                                            <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete" />
-                                            <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" />
+                                            <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete"  />
+                                            <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update"  />
+                                            <img src={mas} className="h-9 w-9 rounded-full" alt="Update"  />
                                         </div>
                                     </div>
                                 </div>
@@ -96,6 +103,7 @@ export default function Clientes() {
                     </div>
                 </div>
             </div>
+            <AgregarMascotasClienteModal isOpen={isModalOpen} onClose={closeModal}/>
         </>
     );
 }
