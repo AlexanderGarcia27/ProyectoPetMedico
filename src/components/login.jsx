@@ -7,30 +7,25 @@ import { autenticarUsuario } from '../fetch/login';
 export default function Login() {
   const navigate = useNavigate();
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
-    // Obtiene los valores de los campos de usuario y contraseña
     const usuario = document.getElementById("user").value;
     const contrasena = document.getElementById("password").value;
 
-    // Valida el formulario antes de hacer la solicitud
-    const esValido = validarFormulario(usuario, contrasena);
-
-    if (esValido) {
-      // Llama a la función de autenticación
-      autenticarUsuario(usuario, contrasena)
-        .then(data => {
-          if (data) {
-            // Si la autenticación es exitosa, redirige al usuario a la página de inicio
-            navigate('/inicio');
-          }
-        })
-        .catch(error => {
-          // Manejo de errores ya está en la función `autenticarUsuario`
-        });
+    try {
+      const data = await autenticarUsuario(usuario, contrasena);
+      if (data) {
+        console.log('Autenticación exitosa, redirigiendo a /inicio');
+        navigate('/inicio');
+      } else {
+        console.error('Datos incorrectos o usuario no encontrado');
+      }
+    } catch (error) {
+      console.error('Error en el proceso de autenticación:', error);
     }
   };
+
 
   return (
     <div className="bg-white flex h-screen w-screen items-center justify-center px-6 py-12 lg:px-8 text-center">

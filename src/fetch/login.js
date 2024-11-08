@@ -1,5 +1,5 @@
 export function autenticarUsuario(usuario, contrasena) {
-  fetch('https://backend-veterinaria-ew45.onrender.com/auth/login', {
+  return fetch('/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -18,10 +18,11 @@ export function autenticarUsuario(usuario, contrasena) {
     })
     .then(data => {
       console.log('Respuesta del servidor:', data);
-      return data; // Retorna los datos para manejar la respuesta en el componente que lo llame
+      return data; // Ahora retorna los datos correctamente
     })
     .catch(error => {
       console.error('Error:', error);
       alert('Usuario o contraseña incorrectos');
+      return null; // Retorna null en caso de error
     });
 }
