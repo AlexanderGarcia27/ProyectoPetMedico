@@ -9,10 +9,10 @@ export default function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
+  
     const usuario = document.getElementById("user").value;
     const contrasena = document.getElementById("password").value;
-
+  
     try {
       const data = await autenticarUsuario(usuario, contrasena);
       if (data) {
@@ -25,7 +25,7 @@ export default function Login() {
       console.error('Error en el proceso de autenticación:', error);
     }
   };
-
+  
 
   return (
     <div className="bg-white flex h-screen w-screen items-center justify-center px-6 py-12 lg:px-8 text-center">
