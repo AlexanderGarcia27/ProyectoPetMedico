@@ -1,5 +1,6 @@
 import React from 'react';
 import logo1 from "../assets/logo1.jpg";
+import Sidebar from './SideMenu.jsx';
 
 export default function Inicio() {
     return (
@@ -43,6 +44,7 @@ export default function Inicio() {
                     </div>
                 </div>
             </nav>
+            <Sidebar/>
             <div className="h-screen w-screen flex justify-center items-center min-h-screen p-4">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full max-w-screen-lg">
                     <table className="w-full text-base text-center border-collapse border-Tborder">

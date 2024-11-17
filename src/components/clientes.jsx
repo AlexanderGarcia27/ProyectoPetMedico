@@ -8,6 +8,7 @@ import BorrarMascotaModal from "./modales/BorrarMascotaModal.jsx";
 import ActualizarMascotaModal from './modales/ActualizarMascotasModal.jsx';
 import AgregarServicioModal from "./modales/AgregarServicioModal.jsx";
 import EliminarClienteModal from "./modales/EliminarClienteModal.jsx";
+import ActualizarClienteModal from './modales/ActualizarClienteModal.jsx';
 
 export default function Clientes() {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,7 @@ export default function Clientes() {
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
     const [isDeleteClientModalOpen, setIsDeleteClientModalOpen] = useState(false);
+    const [isUpdateClientModalOpen, setIsUpdateClientModalOpen] = useState(false);
 
     const toggleAccordion = () => {
         setIsOpen(!isOpen);
@@ -43,6 +45,12 @@ export default function Clientes() {
     };
     const closeUpdateModal = () => {
         setIsUpdateModalOpen(false);
+    };
+    const openUpdateClientModal = () => {
+        setIsUpdateClientModalOpen(true);
+    };
+    const closeUpdateClientModal = () => {
+        setIsUpdateClientModalOpen(false);
     };
     const openServiceModal = () => {
         setIsServiceModalOpen(true);
@@ -96,7 +104,7 @@ export default function Clientes() {
                                 {isOpen && (
                                     <div className="flex items-center space-x-1 ml-2">
                                         <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete "onClick={openDeleteClientModal} />
-                                        <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" />
+                                        <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" onClick={openUpdateClientModal}/>
                                     </div>
                                 )}
                                 <svg data-accordion-icon className={`w-6 h-6 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -140,6 +148,7 @@ export default function Clientes() {
             <AgregarServicioModal isOpen={isServiceModalOpen} onClose={closeServiceModal} />
             <BorrarMascotaModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}/>
             <ActualizarMascotaModal isOpen={isUpdateModalOpen} onClose={closeUpdateModal}/>
+            <ActualizarClienteModal isOpen={isUpdateClientModalOpen} onClose={closeUpdateClientModal}/>
             <EliminarClienteModal isOpen={isDeleteClientModalOpen} onClose={closeDeleteClientModal}/>
         </>
     );
