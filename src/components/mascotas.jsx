@@ -7,7 +7,11 @@ import AgregarServicioModal from "./modales/AgregarServicioModal.jsx";
 import AgregarMascotasModal from "./modales/AgregarMascotasModal.jsx";
 import BorrarMascotaModal from "./modales/BorrarMascotaModal.jsx";
 import ActualizarMascotaModal from './modales/ActualizarMascotasModal.jsx';
+
+import Sidebar from './SideMenu.jsx';
+
 import { fetchMascotas } from '../validation/fetchMascotas.js'; // Importa la función desde validation
+
 
 export default function Mascotas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,7 +56,7 @@ export default function Mascotas() {
                     </div>
                 </div>
             </nav>
-
+            <Sidebar/>
             <div className="flex justify-start items-start space-x-2 p-6">
                 <p className="font-kodchasan text-texto text-[30px] mt-0">Mascotas</p>
                 <img src={mas} className="h-6 w-6 rounded-full cursor-pointer" alt="Add" onClick={openModal} />

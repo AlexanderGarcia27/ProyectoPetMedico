@@ -3,9 +3,11 @@ import logo1 from "../assets/logo1.jpg";
 import patita from "../assets/Patita.png";
 import client from "../assets/client.png";
 import serv from "../assets/serv.png";
+import { useNavigate } from 'react-router-dom';
 
 export default function Sidebar({ onSidebarToggle }) {
     const [isVisible, setIsVisible] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleMouseMove = (event) => {
@@ -34,16 +36,23 @@ export default function Sidebar({ onSidebarToggle }) {
                     <span className="text-3xl font-kodchasan font-bold leading-5 text-texto">MEDICO</span>
                 </div>
             </div>
-            <ul className="p-4 justify-center">
-                <li className="mb-4 cursor-pointer text-[25px] font-kodchasan text-texto flex items-center">
-                    <img src={client} alt="Patita" className="h-8 w-8 ml-2" />
-                    Clientes</li>
-                <li className="mb-4 cursor-pointer text-[25px] font-kodchasan text-texto flex items-center">
-                    <img src={patita} alt="Patita" className="h-8 w-8 ml-2" />
-                    Mascotas</li>
-                <li className="mb-4 cursor-pointer text-[25px] font-kodchasan text-texto flex items-center">
-                    <img src={serv} alt="Patita" className="h-8 w-8 ml-2" />
-                    Servicios</li>
+            <ul className="p-8">
+                <li className="mb-4 cursor-pointer text-[25px] font-kodchasan text-texto flex items-center justify-center" onClick={() => navigate('/inicio')}>
+                    <img src={client} alt="Clientes" className="h-8 w-8 mr-4" />
+                    Inicio
+                </li>
+                <li className="mb-4 cursor-pointer text-[25px] font-kodchasan text-texto flex items-center justify-center" onClick={() => navigate('/clientes')}>
+                    <img src={client} alt="Clientes" className="h-8 w-8 mr-4" />
+                    Clientes
+                </li>
+                <li className="mb-4 cursor-pointer text-[25px] font-kodchasan text-texto flex items-center justify-center" onClick={() => navigate('/mascotas')}>
+                    <img src={patita} alt="Mascotas" className="h-8 w-8 mr-4" />
+                    Mascotas
+                </li>
+                <li className="mb-4 cursor-pointer text-[25px] font-kodchasan text-texto flex items-center justify-center" onClick={() => navigate('/servicios')}>
+                    <img src={serv} alt="Servicios" className="h-8 w-8 mr-4" />
+                    Servicios
+                </li>
             </ul>
         </div>
     );
