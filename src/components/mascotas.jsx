@@ -16,6 +16,7 @@ export default function Mascotas() {
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
     const [mascotas, setMascotas] = useState([]);
+    const [expandedCard, setExpandedCard] = useState(null); // Para controlar qué card está expandido
 
     useEffect(() => {
         const fetchDatosMascotas = async () => {
@@ -33,6 +34,14 @@ export default function Mascotas() {
     const closeUpdateModal = () => setIsUpdateModalOpen(false);
     const openServiceModal = () => setIsServiceModalOpen(true);
     const closeServiceModal = () => setIsServiceModalOpen(false);
+
+    const toggleExpand = (index) => {
+        if (expandedCard === index) {
+            setExpandedCard(null); // Si el card ya está expandido, lo contraemos
+        } else {
+            setExpandedCard(index); // Expandimos el card correspondiente
+        }
+    };
 
     return (
         <>
@@ -62,12 +71,16 @@ export default function Mascotas() {
                 <div className="flex justify-center items-center">
                     <div className="flex flex-wrap justify-center gap-6">
                         {mascotas.map((mascota, index) => (
-                            <div key={index} className="flex flex-col justify-center mx-6 my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-6 w-60 h-[400px]">
+                            <div
+                                key={index}
+                                className={`flex flex-col justify-center mx-6 my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-6 w-60 ${expandedCard === index ? 'h-auto' : 'h-[400px]'} transition-all duration-300`}
+                            >
                                 <div className="relative h-[200px] m-2.5 overflow-hidden text-white rounded-md">
                                     <img
                                         src={mascota.imagen || "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"}
                                         alt="card-image"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover cursor-pointer"
+                                        onClick={() => toggleExpand(index)} // Al hacer clic, expandimos el card
                                     />
                                 </div>
                                 <div className="p-4">
@@ -77,6 +90,15 @@ export default function Mascotas() {
                                     <h6 className="mb-2 text-slate-800 text-[17px] font-kodchasan flex justify-start">
                                         Dueño: {mascota.cliente ? `${mascota.cliente.nombre} ${mascota.cliente.apellidos}` : 'No disponible'}
                                     </h6>
+                                    {expandedCard === index && (
+                                        <div className="mt-4 text-slate-800 text-[15px] font-kodchasan">
+                                            <p><strong>Raza:</strong> {mascota.raza}</p>
+                                            <p><strong>Alergias:</strong> {mascota.alergias}</p>
+                                            <p><strong>Enfermedades:</strong> {mascota.enfermedades}</p>
+                                            <p><strong>Dueño:</strong> {mascota.cliente ? `${mascota.cliente.nombre} ${mascota.cliente.apellidos}` : 'No disponible'}</p>
+                                            <p><strong>Teléfono:</strong> {mascota.cliente ? mascota.cliente.telefono : 'No disponible'}</p>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="flex justify-center items-center space-x-5">
                                     <img src={imgDelete} className="h-9 w-9 rounded-full cursor-pointer" alt="Delete" onClick={openDeleteModal} />
@@ -87,14 +109,11 @@ export default function Mascotas() {
                         ))}
                     </div>
                 </div>
-
             </div>
-
-
-            <AgregarServicioModal isOpen={isServiceModalOpen} onClose={closeServiceModal} />
             <AgregarMascotasModal isOpen={isModalOpen} onClose={closeModal} />
             <BorrarMascotaModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} />
             <ActualizarMascotaModal isOpen={isUpdateModalOpen} onClose={closeUpdateModal} />
+            <AgregarServicioModal isOpen={isServiceModalOpen} onClose={closeServiceModal} />
         </>
     );
 }
