@@ -7,11 +7,8 @@ import AgregarServicioModal from "./modales/AgregarServicioModal.jsx";
 import AgregarMascotasModal from "./modales/AgregarMascotasModal.jsx";
 import BorrarMascotaModal from "./modales/BorrarMascotaModal.jsx";
 import ActualizarMascotaModal from './modales/ActualizarMascotasModal.jsx';
-
 import Sidebar from './SideMenu.jsx';
-
-import { fetchMascotas } from '../validation/fetchMascotas.js'; // Importa la función desde validation
-
+import { fetchMascotas } from '../validation/fetchMascotas.js';
 
 export default function Mascotas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,11 +19,11 @@ export default function Mascotas() {
 
     useEffect(() => {
         const fetchDatosMascotas = async () => {
-            const mascotasData = await fetchMascotas(); // Llamar la función fetchMascotas
-            setMascotas(mascotasData); // Guardar los datos en el estado
+            const mascotasData = await fetchMascotas();
+            setMascotas(mascotasData);
         };
         fetchDatosMascotas();
-    }, []); // Se ejecuta una vez cuando el componente se monta
+    }, []);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -39,7 +36,7 @@ export default function Mascotas() {
 
     return (
         <>
-            <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-transparent pt-4">
+            <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-fondo pt-4">
                 <div className="max-w-screen-xl flex items-center justify-between pl-4">
                     <div className="flex items-center space-x-4 flex-grow">
                         <img src={logo1} className="h-16 w-16 rounded-full" alt="Flowbite Logo" />
@@ -56,33 +53,42 @@ export default function Mascotas() {
                     </div>
                 </div>
             </nav>
-            <Sidebar/>
-            <div className="flex justify-start items-start space-x-2 p-6">
-                <p className="font-kodchasan text-texto text-[30px] mt-0">Mascotas</p>
-                <img src={mas} className="h-6 w-6 rounded-full cursor-pointer" alt="Add" onClick={openModal} />
-            </div>
-
-            {/* Mapeo de mascotas */}
-            {mascotas.map((mascota, index) => (
-                <div key={index} className="relative flex justify-items-center flex-col mx-6 my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-6 w-60 h-80">
-                    <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                        <img src={mascota.imagen || "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"} alt="card-image" className="flex justify-center items-center object-cover" />
-                        <div className="p-4">
-                            <h6 className="mb-2 text-slate-800 text-xl font-semibold">
-                                Nombre: {mascota.nombre}
-                            </h6>
-                            <h6 className="mb-2 text-slate-800 text-xl font-semibold">
-                                Cliente: {mascota.cliente ? `${mascota.cliente.nombre} ${mascota.cliente.apellidos}` : 'No disponible'}
-                            </h6>
-                        </div>
-                    </div>
-                    <div className="flex justify-center items-center space-x-5">
-                        <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete" onClick={openDeleteModal} />
-                        <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" onClick={openUpdateModal} />
-                        <img src={mas} className="h-9 w-9 rounded-full" alt="Update" onClick={openServiceModal} />
+            <Sidebar />
+            <div className="pt-[120px]">
+                <div className="flex justify-start items-start space-x-2 p-5">
+                    <p className="font-kodchasan text-texto text-[30px] mt-0">Mascotas</p>
+                    <img src={mas} className="h-6 w-6 rounded-full cursor-pointer" alt="Add" onClick={openModal} />
+                </div>
+                <div className="flex justify-center items-center">
+                    <div className="flex flex-wrap justify-center gap-6">
+                        {mascotas.map((mascota, index) => (
+                            <div key={index} className="flex flex-col justify-center mx-6 my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-6 w-60 h-[400px]">
+                                <div className="relative h-[200px] m-2.5 overflow-hidden text-white rounded-md">
+                                    <img
+                                        src={mascota.imagen || "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"}
+                                        alt="card-image"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="p-4">
+                                    <h6 className="mb-2 text-slate-800 text-[20px] font-kodchasan flex justify-center">
+                                        {mascota.nombre}
+                                    </h6>
+                                    <h6 className="mb-2 text-slate-800 text-[17px] font-kodchasan flex justify-start">
+                                        Dueño: {mascota.cliente ? `${mascota.cliente.nombre} ${mascota.cliente.apellidos}` : 'No disponible'}
+                                    </h6>
+                                </div>
+                                <div className="flex justify-center items-center space-x-5">
+                                    <img src={imgDelete} className="h-9 w-9 rounded-full cursor-pointer" alt="Delete" onClick={openDeleteModal} />
+                                    <img src={imgUpdate} className="h-9 w-9 rounded-full cursor-pointer" alt="Update" onClick={openUpdateModal} />
+                                    <img src={mas} className="h-9 w-9 rounded-full cursor-pointer" alt="Service" onClick={openServiceModal} />
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            ))}
+            </div>
+
 
             <AgregarServicioModal isOpen={isServiceModalOpen} onClose={closeServiceModal} />
             <AgregarMascotasModal isOpen={isModalOpen} onClose={closeModal} />
