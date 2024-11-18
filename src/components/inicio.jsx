@@ -38,7 +38,7 @@ export default function Inicio() {
 
   return (
     <>
-      <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-transparent pt-4">
+      <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-fondo pt-4">
         <div className="max-w-screen-xl flex items-center justify-between pl-4 flex-wrap">
           <div className="flex items-center space-x-4 flex-grow">
             <img src={logo1} className="h-16 w-16 rounded-full" alt="Flowbite Logo" />
