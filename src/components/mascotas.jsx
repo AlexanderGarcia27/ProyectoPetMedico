@@ -4,19 +4,19 @@ import imgDelete from "../assets/eliminar.png";
 import imgUpdate from "../assets/actualizar.png";
 import mas from "../assets/simbolomas.png";
 import AgregarServicioModal from "./modales/AgregarServicioModal.jsx";
-import AgregarMascotasModal from "./modales/AgregarMascotasModal.jsx";
 import BorrarMascotaModal from "./modales/BorrarMascotaModal.jsx";
 import ActualizarMascotaModal from './modales/ActualizarMascotasModal.jsx';
 import Sidebar from './SideMenu.jsx';
 import { fetchMascotas } from '../validation/fetchMascotas.js';
 
 export default function Mascotas() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
     const [mascotas, setMascotas] = useState([]);
     const [expandedCard, setExpandedCard] = useState(null); // Para controlar qué card está expandido
+    const [selectedMascota, setSelectedMascota] = useState(null);
+
 
     useEffect(() => {
         const fetchDatosMascotas = async () => {
@@ -25,12 +25,12 @@ export default function Mascotas() {
         };
         fetchDatosMascotas();
     }, []);
-
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
     const openDeleteModal = () => setIsDeleteModalOpen(true);
     const closeDeleteModal = () => setIsDeleteModalOpen(false);
-    const openUpdateModal = () => setIsUpdateModalOpen(true);
+    const openUpdateModal = (mascota) => {
+        setSelectedMascota(mascota); // Guarda toda la información de la mascota seleccionada, incluida la imagen
+        setIsUpdateModalOpen(true); // Abre el modal
+    };    
     const closeUpdateModal = () => setIsUpdateModalOpen(false);
     const openServiceModal = () => setIsServiceModalOpen(true);
     const closeServiceModal = () => setIsServiceModalOpen(false);
@@ -64,10 +64,6 @@ export default function Mascotas() {
             </nav>
             <Sidebar />
             <div className="pt-[120px]">
-                <div className="flex justify-start items-start space-x-2 p-5">
-                    <p className="font-kodchasan text-texto text-[30px] mt-0">Mascotas</p>
-                    <img src={mas} className="h-6 w-6 rounded-full cursor-pointer" alt="Add" onClick={openModal} />
-                </div>
                 <div className="flex justify-center items-center">
                     <div className="flex flex-wrap justify-center gap-6">
                         {mascotas.map((mascota, index) => (
@@ -87,7 +83,7 @@ export default function Mascotas() {
                                     <h6 className="mb-2 text-slate-800 text-[20px] font-kodchasan flex justify-center">
                                         {mascota.nombre}
                                     </h6>
-                                    <h6 className="mb-2 text-slate-800 text-[17px] font-kodchasan flex justify-start">
+                                    <h6 className="mb-2 text-slate-800 text-[17px] font-kodchasan">
                                         Dueño: {mascota.cliente ? `${mascota.cliente.nombre} ${mascota.cliente.apellidos}` : 'No disponible'}
                                     </h6>
                                     {expandedCard === index && (
@@ -102,7 +98,12 @@ export default function Mascotas() {
                                 </div>
                                 <div className="flex justify-center items-center space-x-5">
                                     <img src={imgDelete} className="h-9 w-9 rounded-full cursor-pointer" alt="Delete" onClick={openDeleteModal} />
-                                    <img src={imgUpdate} className="h-9 w-9 rounded-full cursor-pointer" alt="Update" onClick={openUpdateModal} />
+                                    <img
+                                        src={imgUpdate}
+                                        className="h-9 w-9 rounded-full cursor-pointer"
+                                        alt="Update"
+                                        onClick={() => openUpdateModal(mascota)} // Pasa la mascota correspondiente
+                                    />
                                     <img src={mas} className="h-9 w-9 rounded-full cursor-pointer" alt="Service" onClick={openServiceModal} />
                                 </div>
                             </div>
@@ -110,9 +111,12 @@ export default function Mascotas() {
                     </div>
                 </div>
             </div>
-            <AgregarMascotasModal isOpen={isModalOpen} onClose={closeModal} />
             <BorrarMascotaModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} />
-            <ActualizarMascotaModal isOpen={isUpdateModalOpen} onClose={closeUpdateModal} />
+            <ActualizarMascotaModal
+                isOpen={isUpdateModalOpen}
+                onClose={closeUpdateModal}
+                selectedMascota={selectedMascota}
+            />
             <AgregarServicioModal isOpen={isServiceModalOpen} onClose={closeServiceModal} />
         </>
     );
