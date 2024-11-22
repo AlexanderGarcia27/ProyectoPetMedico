@@ -1,4 +1,4 @@
-import ImagModal from '../../assets/ImagMas.jpg';
+import ImagModal from '../../assets/ImagClient.jpg';
 
 export default function AgregarClientesModal({ isOpen, onClose }) {
     if (!isOpen) return null;

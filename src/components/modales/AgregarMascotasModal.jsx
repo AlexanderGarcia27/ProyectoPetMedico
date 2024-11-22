@@ -60,9 +60,6 @@ export default function AgregarMascotasModal({ isOpen, onClose }) {
                         <div className="mb-4">
                             <input type="text" className="w-full p-2 rounded-[70px] border-GrisBorde border-2 bg-white font-kodchasan text-texto placeholder-texto" placeholder="Enfermedades" />
                         </div>
-                        <div className="mb-4">
-                            <input type="text" className="w-full p-2 rounded-[70px] border-GrisBorde border-2 bg-white font-kodchasan text-texto placeholder-texto" placeholder="Nombre del dueño" />
-                        </div>
                         <div className="flex justify-center space-x-4">
                             <button type="button" className="px-4 py-2 bg-mostrar rounded-[70px] border-AzulBorde border-2 text-texto font-kodchasan" onClick={handleCancel}>Cancelar</button>
                             <button type="submit" className="px-4 py-2 bg-mostrar rounded-[70px] border-AzulBorde border-2 text-texto font-kodchasan">Guardar</button>
