@@ -32,8 +32,8 @@ export default function Servicios() {
   return (
     <>
       {/* Barra de navegación */}
-      <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-transparent pt-4">
-        <div className="max-w-screen-xl flex items-center justify-between pl-4 flex-wrap">
+      <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-fondo">
+        <div className="max-w-screen-xl flex items-center justify-between pl-4 flex-wrap py-4">
           <div className="flex items-center space-x-4 flex-grow">
             <img src={logo1} className="h-16 w-16 rounded-full" alt="Logo" />
             <div className="flex flex-col items-start">
@@ -65,9 +65,9 @@ export default function Servicios() {
       <Sidebar />
 
       {/* Tabla de servicios */}
-      <div className="h-screen w-screen flex justify-center items-center min-h-screen p-4">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full max-w-screen-lg">
-          <table className="w-full text-base text-center border-collapse border-Tborder">
+      <div className="mt-[120px] w-screen flex justify-center items-start min-h-screen p-4">
+        <div className="shadow-md sm:rounded-lg  max-w-screen-lg overflow-x-auto">
+          <table className="w-full text-base text-center border-collapse">
             <thead className="uppercase bg-Thead font-kodchasan text-texto text-1xl border-Tborder">
               <tr>
                 <th scope="col" className="px-6 py-3 border border-Tborder">Cliente</th>
@@ -119,6 +119,7 @@ export default function Servicios() {
           </table>
         </div>
       </div>
+
     </>
   );
 }

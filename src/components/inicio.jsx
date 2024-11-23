@@ -86,7 +86,7 @@ export default function Inicio() {
         </div>
       </nav>
       <Sidebar />
-      <div className="h-screen w-screen flex justify-center items-center min-h-screen p-4">
+      <div className="mt-[120px] w-screen flex justify-center items-center min-h-screen p-4">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full max-w-screen-lg">
           <table className="w-full text-base text-center border-collapse border-Tborder">
             <thead className="uppercase bg-Thead font-kodchasan text-texto text-1xl border-Tborder">
