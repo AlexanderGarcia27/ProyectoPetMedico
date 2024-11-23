@@ -25,13 +25,6 @@ export default function AgregarServicioModal({ isOpen, onClose }) {
                             placeholder="Costo del servicio"
                         />
                     </div>
-                    <div>
-                        <label className="text-texto font-kodchasan">Fecha:</label>
-                        <input
-                            type="date"
-                            className="w-full px-3 py-2 rounded-[20px] bg-InputSer text-TextElim"
-                        />
-                    </div>
                     <div className="flex justify-center space-x-4">
                         <button
                             type="button"
