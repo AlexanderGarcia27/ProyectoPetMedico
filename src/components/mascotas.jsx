@@ -14,9 +14,8 @@ export default function Mascotas() {
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
     const [mascotas, setMascotas] = useState([]);
-    const [expandedCard, setExpandedCard] = useState(null); // Para controlar qué card está expandido
+    const [expandedCard, setExpandedCard] = useState(null);
     const [selectedMascota, setSelectedMascota] = useState(null);
-
 
     useEffect(() => {
         const fetchDatosMascotas = async () => {
@@ -25,22 +24,26 @@ export default function Mascotas() {
         };
         fetchDatosMascotas();
     }, []);
+
     const openDeleteModal = () => setIsDeleteModalOpen(true);
     const closeDeleteModal = () => setIsDeleteModalOpen(false);
+
     const openUpdateModal = (mascota) => {
-        setSelectedMascota(mascota); // Guarda toda la información de la mascota seleccionada, incluida la imagen
-        setIsUpdateModalOpen(true); // Abre el modal
-    };    
+        setSelectedMascota(mascota);
+        setIsUpdateModalOpen(true);
+    };
+
     const closeUpdateModal = () => setIsUpdateModalOpen(false);
-    const openServiceModal = () => setIsServiceModalOpen(true);
+
+    const openServiceModal = (mascota) => {
+        setSelectedMascota(mascota); // Guarda la mascota seleccionada
+        setIsServiceModalOpen(true);
+    };
+
     const closeServiceModal = () => setIsServiceModalOpen(false);
 
     const toggleExpand = (index) => {
-        if (expandedCard === index) {
-            setExpandedCard(null); // Si el card ya está expandido, lo contraemos
-        } else {
-            setExpandedCard(index); // Expandimos el card correspondiente
-        }
+        setExpandedCard(expandedCard === index ? null : index);
     };
 
     return (
@@ -76,7 +79,7 @@ export default function Mascotas() {
                                         src={mascota.imagen || "https://static.fundacion-affinity.org/cdn/farfuture/PVbbIC-0M9y4fPbbCsdvAD8bcjjtbFc0NSP3lRwlWcE/mtime:1643275542/sites/default/files/los-10-sonidos-principales-del-perro.jpg"}
                                         alt="card-image"
                                         className="w-full h-full object-cover cursor-pointer"
-                                        onClick={() => toggleExpand(index)} // Al hacer clic, expandimos el card
+                                        onClick={() => toggleExpand(index)}
                                     />
                                 </div>
                                 <div className="p-4">
@@ -91,7 +94,6 @@ export default function Mascotas() {
                                             <p><strong>Raza:</strong> {mascota.raza}</p>
                                             <p><strong>Alergias:</strong> {mascota.alergias}</p>
                                             <p><strong>Enfermedades:</strong> {mascota.enfermedades}</p>
-                                            <p><strong>Dueño:</strong> {mascota.cliente ? `${mascota.cliente.nombre} ${mascota.cliente.apellidos}` : 'No disponible'}</p>
                                             <p><strong>Teléfono:</strong> {mascota.cliente ? mascota.cliente.telefono : 'No disponible'}</p>
                                         </div>
                                     )}
@@ -102,9 +104,14 @@ export default function Mascotas() {
                                         src={imgUpdate}
                                         className="h-9 w-9 rounded-full cursor-pointer"
                                         alt="Update"
-                                        onClick={() => openUpdateModal(mascota)} // Pasa la mascota correspondiente
+                                        onClick={() => openUpdateModal(mascota)}
                                     />
-                                    <img src={mas} className="h-9 w-9 rounded-full cursor-pointer" alt="Service" onClick={openServiceModal} />
+                                    <img
+                                        src={mas}
+                                        className="h-9 w-9 rounded-full cursor-pointer"
+                                        alt="Service"
+                                        onClick={() => openServiceModal(mascota)} // Pasa la mascota seleccionada
+                                    />
                                 </div>
                             </div>
                         ))}
@@ -112,12 +119,13 @@ export default function Mascotas() {
                 </div>
             </div>
             <BorrarMascotaModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} />
-            <ActualizarMascotaModal
-                isOpen={isUpdateModalOpen}
-                onClose={closeUpdateModal}
-                selectedMascota={selectedMascota}
+            <ActualizarMascotaModal isOpen={isUpdateModalOpen} onClose={closeUpdateModal} selectedMascota={selectedMascota} />
+            <AgregarServicioModal
+                isOpen={isServiceModalOpen}
+                onClose={closeServiceModal}
+                idCliente={selectedMascota?.cliente?.id_cliente}
+                idMascota={selectedMascota?.id_mascota}
             />
-            <AgregarServicioModal isOpen={isServiceModalOpen} onClose={closeServiceModal} />
         </>
     );
 }
