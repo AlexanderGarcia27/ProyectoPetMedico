@@ -12,9 +12,10 @@ export const fetchBorrarMascota = async (idMascota) => {
             throw new Error(errorData.message || 'Error al eliminar la mascota');
         }
 
-        return { ok: true, message: 'Mascota eliminada con éxito' };
+        // Recarga la página directamente al eliminar con éxito
+        window.location.reload();
+
     } catch (error) {
         console.error('Error al eliminar la mascota:', error);
-        return { ok: false, message: error.message || 'Error desconocido' };
     }
 };
