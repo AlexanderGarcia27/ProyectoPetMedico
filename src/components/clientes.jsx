@@ -53,6 +53,11 @@ export default function Clientes() {
         setSelectedClienteId(null);
     };
 
+    const openModal = (id_cliente) => {
+        setSelectedClienteId(id_cliente);
+        setIsModalOpen(true);
+    };
+
     const closeModal = () => {
         setIsModalOpen(false);
     };
