@@ -39,11 +39,18 @@ export default function Clientes() {
         setIsUpdateModalOpen(true); // Abre el modal
     };
     const closeUpdateModal = () => setIsUpdateModalOpen(false);
-    const openServiceModal = (mascota) => {
+    const openServiceModal = (clienteId, mascota) => {
+        setSelectedClienteId(clienteId); // Guarda el ID del cliente seleccionado
         setSelectedMascota(mascota); // Guarda la mascota seleccionada
-        setIsServiceModalOpen(true);
+        setIsServiceModalOpen(true); // Abre el modal de servicio
     };
-    const closeServiceModal = () => setIsServiceModalOpen(false);
+
+    const closeServiceModal = () => {
+        setIsServiceModalOpen(false);
+        setSelectedMascota(null);
+        setSelectedClienteId(null);
+    };
+
     const openModal = (id_cliente) => {
         setSelectedClienteId(id_cliente);
         setIsModalOpen(true);
@@ -186,7 +193,7 @@ export default function Clientes() {
                                                         src={mas}
                                                         className="h-9 w-9 rounded-full cursor-pointer"
                                                         alt="Service"
-                                                        onClick={() => openServiceModal(mascota)} // Pasa la mascota seleccionada
+                                                        onClick={() => openServiceModal(cliente.id_cliente, mascota)}// Pasa la mascota seleccionada
                                                     />
                                                 </div>
                                             </div>
@@ -220,8 +227,8 @@ export default function Clientes() {
             <AgregarServicioModal
                 isOpen={isServiceModalOpen}
                 onClose={closeServiceModal}
-                idCliente={selectedMascota?.cliente?.id_cliente || ''}
-                idMascota={selectedMascota?.id_mascota || ''}
+                idCliente={selectedClienteId}
+                idMascota={selectedMascota?.id_mascota}
             />
         </>
     );
