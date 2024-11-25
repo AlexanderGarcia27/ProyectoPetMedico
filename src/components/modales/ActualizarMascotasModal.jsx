@@ -69,6 +69,7 @@ export default function ActualizarMascotasModal({ isOpen, onClose, selectedMasco
             if (onSuccess) onSuccess(data);
 
             onClose();
+            window.location.reload();
         } catch (err) {
             console.error('Error en la solicitud:', err);
             setError('Hubo un error al actualizar la mascota. Intenta nuevamente.');

@@ -23,19 +23,34 @@ export default function Clientes() {
     const [isDeleteClientModalOpen, setIsDeleteClientModalOpen] = useState(false);
     const [isUpdateClientModalOpen, setIsUpdateClientModalOpen] = useState(false);
     const [selectedMascota, setSelectedMascota] = useState(null);
+    const [expandedCard, setExpandedCard] = useState(null);
+    const [selectedClienteId, setSelectedClienteId] = useState(null);
 
-    const openDeleteModal = () => setIsDeleteModalOpen(true);
+
+
+    const toggleExpand = (index) => {
+        setExpandedCard(expandedCard === index ? null : index);
+    };
+    const openDeleteModal = (mascota) => {
+        setSelectedMascota(mascota); // Guarda la mascota seleccionada
+        setIsDeleteModalOpen(true); // Abre el modal de eliminación
+    };
     const closeDeleteModal = () => setIsDeleteModalOpen(false);
     const openUpdateModal = (mascota) => {
         setSelectedMascota(mascota); // Guarda toda la información de la mascota seleccionada, incluida la imagen
         setIsUpdateModalOpen(true); // Abre el modal
     };
     const closeUpdateModal = () => setIsUpdateModalOpen(false);
-    const openServiceModal = () => setIsServiceModalOpen(true);
+    const openServiceModal = (mascota) => {
+        setSelectedMascota(mascota); // Guarda la mascota seleccionada
+        setIsServiceModalOpen(true);
+    };
     const closeServiceModal = () => setIsServiceModalOpen(false);
-    const openModal = () => {
+    const openModal = (id_cliente) => {
+        setSelectedClienteId(id_cliente);
         setIsModalOpen(true);
     };
+
     const closeModal = () => {
         setIsModalOpen(false);
     };
@@ -135,25 +150,46 @@ export default function Clientes() {
                                 <div className="p-5 border border-t-0 border-gray-200 bg-mostrar rounded-[20px] overflow-y-auto max-h-[500px]">
                                     <div className="flex items-center space-x-2 mb-4">
                                         <p className="font-kodchasan text-texto text-[30px]">Mascotas</p>
-                                        <img src={mas} className="h-6 w-6 rounded-full cursor-pointer" alt="Add" onClick={() => setIsModalOpen(true)} />
+                                        <img
+                                            src={mas}
+                                            className="h-6 w-6 rounded-full cursor-pointer"
+                                            alt="Add"
+                                            onClick={() => openModal(cliente.id_cliente)}
+                                        />
                                     </div>
                                     <div className="flex flex-wrap gap-4">
                                         {cliente.mascota.map((mascota) => (
-                                            <div key={mascota.id_mascota} className="flex flex-col justify-center bg-primario shadow-sm border border-slate-200 rounded-[20px] p-6 w-60">
-                                                <img src={mascota.imagen} alt="Pet" className="object-cover h-56 rounded-md cursor-pointer" onClick={() => toggleExpand(index)} />
+                                            <div key={mascota.id_mascota} className={`flex flex-col justify-center mx-6 my-6 bg-primario shadow-sm border border-slate-200 rounded-[20px] p-6 w-60 ${expandedCard === mascota ? 'h-auto' : 'h-[400px]'} transition-all duration-300`}>
+                                                <img src={mascota.imagen} alt="Pet" className="object-cover h-56 rounded-md cursor-pointer" onClick={() => toggleExpand(mascota)} />
                                                 <div className="p-4">
                                                     <h6 className="mb-2 text-slate-800 text-xl font-semibold">Nombre: {mascota.nombre}</h6>
                                                     <h6 className="mb-2 text-slate-800 text-xl font-semibold">Raza: {mascota.raza}</h6>
+                                                    {expandedCard === mascota && (
+                                                        <div className="mt-4 text-slate-800 text-[15px] font-kodchasan">
+                                                            <p><strong>Alergias:</strong> {mascota.alergias}</p>
+                                                            <p><strong>Enfermedades:</strong> {mascota.enfermedades}</p>
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 <div className="flex justify-center items-center space-x-5">
-                                                    <img src={imgDelete} className="h-9 w-9 rounded-full cursor-pointer" alt="Delete" onClick={openDeleteModal} />
+                                                    <img
+                                                        src={imgDelete}
+                                                        className="h-9 w-9 rounded-full cursor-pointer"
+                                                        alt="Delete"
+                                                        onClick={() => openDeleteModal(mascota)} // Pasa la mascota seleccionada
+                                                    />
                                                     <img
                                                         src={imgUpdate}
                                                         className="h-9 w-9 rounded-full cursor-pointer"
                                                         alt="Update"
                                                         onClick={() => openUpdateModal(mascota)}
                                                     />
-                                                    <img src={mas} className="h-9 w-9 rounded-full cursor-pointer" alt="Service" onClick={openServiceModal} />
+                                                    <img
+                                                        src={mas}
+                                                        className="h-9 w-9 rounded-full cursor-pointer"
+                                                        alt="Service"
+                                                        onClick={() => openServiceModal(mascota)} // Pasa la mascota seleccionada
+                                                    />
                                                 </div>
                                             </div>
                                         ))}
@@ -164,17 +200,31 @@ export default function Clientes() {
                     ))}
                 </div>
             </div>
-            <BorrarMascotaModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} />
+            <BorrarMascotaModal
+                isOpen={isDeleteModalOpen}
+                onClose={closeDeleteModal}
+                idMascota={selectedMascota?.id_mascota || ''} // Pasa el id de la mascota al modal
+                deletedMascota={selectedMascota || null} // Pasa la mascota completa
+            />
             <ActualizarMascotaModal
                 isOpen={isUpdateModalOpen}
                 onClose={closeUpdateModal}
                 selectedMascota={selectedMascota}
             />
-            <AgregarMascotasModal isOpen={isModalOpen} onClose={closeModal} />
+            <AgregarMascotasModal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                idCliente={selectedClienteId}
+            />
             <ActualizarClienteModal isOpen={isUpdateClientModalOpen} onClose={closeUpdateClientModal} />
             <EliminarClienteModal isOpen={isDeleteClientModalOpen} onClose={closeDeleteClientModal} />
-            <AgregarClientesModal isOpen={isAddClientModalOpen} onClose={closeAddClientModal}/>
-            <AgregarServicioModal isOpen={isServiceModalOpen} onClose={closeServiceModal} />
+            <AgregarClientesModal isOpen={isAddClientModalOpen} onClose={closeAddClientModal} />
+            <AgregarServicioModal
+                isOpen={isServiceModalOpen}
+                onClose={closeServiceModal}
+                idCliente={selectedMascota?.cliente?.id_cliente || ''}
+                idMascota={selectedMascota?.id_mascota || ''}
+            />
         </>
     );
 }

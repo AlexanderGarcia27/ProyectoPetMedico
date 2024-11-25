@@ -140,7 +140,11 @@ export default function Mascotas() {
                 idMascota={selectedMascota?.id_mascota || ''} // Pasa el id de la mascota al modal
                 deletedMascota={selectedMascota || null} // Pasa la mascota completa
             />
-            <ActualizarMascotaModal isOpen={isUpdateModalOpen} onClose={closeUpdateModal} selectedMascota={selectedMascota} />
+            <ActualizarMascotaModal
+                isOpen={isUpdateModalOpen}
+                onClose={closeUpdateModal}
+                selectedMascota={selectedMascota}
+            />
             <AgregarServicioModal
                 isOpen={isServiceModalOpen}
                 onClose={closeServiceModal}
