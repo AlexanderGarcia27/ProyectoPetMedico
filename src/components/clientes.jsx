@@ -26,8 +26,6 @@ export default function Clientes() {
     const [expandedCard, setExpandedCard] = useState(null);
     const [selectedClienteId, setSelectedClienteId] = useState(null);
 
-
-
     const toggleExpand = (index) => {
         setExpandedCard(expandedCard === index ? null : index);
     };
