@@ -67,11 +67,14 @@ export default function Clientes() {
     const closeAddClientModal = () => {
         setIsAddClientModalOpen(false)
     }
-    const openDeleteClientModal = () => {
-        setIsDeleteClientModalOpen(true);
+    const openDeleteClientModal = (id_cliente) => {
+        setSelectedClienteId(id_cliente); // Guarda el ID del cliente seleccionado
+        setIsDeleteClientModalOpen(true); // Abre el modal de eliminación
     };
     const closeDeleteClientModal = () => {
         setIsDeleteClientModalOpen(false);
+        // Si se confirma la eliminación:
+        eliminarCliente(selectedClienteId);
     };
     const openUpdateClientModal = () => {
         setIsUpdateClientModalOpen(true);
@@ -144,7 +147,13 @@ export default function Clientes() {
                                     </span>
                                     {isOpen === cliente.id_cliente && (
                                         <div className="flex items-center space-x-1 ml-2">
-                                            <img src={imgDelete} className="h-9 w-9 rounded-full" alt="Delete " onClick={() => setIsDeleteClientModalOpen(true)} />
+                                            <img
+                                                src={imgDelete}
+                                                className="h-9 w-9 rounded-full"
+                                                alt="Delete"
+                                                onClick={() => openDeleteClientModal(cliente)} // Pasa el cliente seleccionado
+                                            />
+
                                             <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" onClick={() => setIsUpdateClientModalOpen(true)} />
                                         </div>
                                     )}
@@ -224,7 +233,11 @@ export default function Clientes() {
                 idCliente={selectedClienteId}
             />
             <ActualizarClienteModal isOpen={isUpdateClientModalOpen} onClose={closeUpdateClientModal} />
-            <EliminarClienteModal isOpen={isDeleteClientModalOpen} onClose={closeDeleteClientModal} />
+            <EliminarClienteModal 
+                isOpen={isDeleteClientModalOpen} 
+                onClose={closeDeleteClientModal} 
+                idCliente={selectedClienteId?.id_cliente} // Pasa el id del cliente
+            />
             <AgregarClientesModal isOpen={isAddClientModalOpen} onClose={closeAddClientModal} />
             <AgregarServicioModal
                 isOpen={isServiceModalOpen}
