@@ -23,6 +23,7 @@ export default function Clientes() {
     const [isDeleteClientModalOpen, setIsDeleteClientModalOpen] = useState(false);
     const [isUpdateClientModalOpen, setIsUpdateClientModalOpen] = useState(false);
     const [selectedMascota, setSelectedMascota] = useState(null);
+    const [selectedCliente, setSelectedCliente] = useState(null);
     const [expandedCard, setExpandedCard] = useState(null);
     const [selectedClienteId, setSelectedClienteId] = useState(null);
 
@@ -37,6 +38,10 @@ export default function Clientes() {
     const openUpdateModal = (mascota) => {
         setSelectedMascota(mascota); // Guarda toda la información de la mascota seleccionada, incluida la imagen
         setIsUpdateModalOpen(true); // Abre el modal
+    };
+    const openUpdateClientModal = (cliente) => {
+        setSelectedCliente(cliente)
+        setIsUpdateClientModalOpen(true);
     };
     const closeUpdateModal = () => setIsUpdateModalOpen(false);
     const openServiceModal = (clienteId, mascota) => {
@@ -73,9 +78,6 @@ export default function Clientes() {
         setIsDeleteClientModalOpen(false);
         // Si se confirma la eliminación:
         eliminarCliente(selectedClienteId);
-    };
-    const openUpdateClientModal = () => {
-        setIsUpdateClientModalOpen(true);
     };
     const closeUpdateClientModal = () => {
         setIsUpdateClientModalOpen(false);
@@ -152,7 +154,11 @@ export default function Clientes() {
                                                 onClick={() => openDeleteClientModal(cliente)} // Pasa el cliente seleccionado
                                             />
 
-                                            <img src={imgUpdate} className="h-9 w-9 rounded-full" alt="Update" onClick={() => setIsUpdateClientModalOpen(true)} />
+                                            <img
+                                                src={imgUpdate}
+                                                className="h-9 w-9 rounded-full"
+                                                alt="Update"
+                                                onClick={() => openUpdateClientModal(cliente)} />
                                         </div>
                                     )}
                                     <svg data-accordion-icon className={`w-6 h-6 transition-transform ${isOpen === cliente.id_cliente ? 'rotate-180' : ''}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -230,13 +236,20 @@ export default function Clientes() {
                 onClose={closeModal}
                 idCliente={selectedClienteId}
             />
-            <ActualizarClienteModal isOpen={isUpdateClientModalOpen} onClose={closeUpdateClientModal} />
-            <EliminarClienteModal 
-                isOpen={isDeleteClientModalOpen} 
-                onClose={closeDeleteClientModal} 
+            <ActualizarClienteModal
+                isOpen={isUpdateClientModalOpen}
+                onClose={closeUpdateClientModal}
+                selectedCliente={selectedCliente}
+            />
+            <EliminarClienteModal
+                isOpen={isDeleteClientModalOpen}
+                onClose={closeDeleteClientModal}
                 idCliente={selectedClienteId?.id_cliente} // Pasa el id del cliente
             />
-            <AgregarClientesModal isOpen={isAddClientModalOpen} onClose={closeAddClientModal} />
+            <AgregarClientesModal
+                isOpen={isAddClientModalOpen}
+                onClose={closeAddClientModal} 
+            />
             <AgregarServicioModal
                 isOpen={isServiceModalOpen}
                 onClose={closeServiceModal}
