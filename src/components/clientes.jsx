@@ -12,6 +12,7 @@ import ActualizarClienteModal from './modales/ActualizarClienteModal.jsx';
 import AgregarClientesModal from "./modales/AgregarClientesModal.jsx";
 import Sidebar from './SideMenu.jsx';
 
+
 export default function Clientes() {
     const [clientes, setClientes] = useState([]);
     const [isOpen, setIsOpen] = useState(null); // Para identificar cuál acordeón está abierto
@@ -26,6 +27,7 @@ export default function Clientes() {
     const [selectedCliente, setSelectedCliente] = useState(null);
     const [expandedCard, setExpandedCard] = useState(null);
     const [selectedClienteId, setSelectedClienteId] = useState(null);
+    const [searchText, setSearchText] = useState('');
 
     const toggleExpand = (index) => {
         setExpandedCard(expandedCard === index ? null : index);
@@ -82,6 +84,9 @@ export default function Clientes() {
     const closeUpdateClientModal = () => {
         setIsUpdateClientModalOpen(false);
     };
+    const filteredClientes = clientes.filter(cliente =>
+        `${cliente.nombre} ${cliente.apellidos}`.toLowerCase().includes(searchText.toLowerCase())
+      );
 
     // Obtener datos de clientes al cargar el componente
     useEffect(() => {
@@ -113,7 +118,13 @@ export default function Clientes() {
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px" className="fill-gray-600 mr-3 rotate-90">
                             <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
                         </svg>
-                        <input type="text" className="w-full outline-none bg-transparent text-gray-600 text-sm" />
+                        <input
+                            type="text"
+                            className="w-full outline-none bg-transparent text-gray-600 text-sm"
+                            value={searchText} // Controlar el valor
+                            onChange={(e) => setSearchText(e.target.value)} // Actualizar el texto de búsqueda
+                            placeholder="Buscar cliente..."
+                            />
                     </div>
                     <div className="flex items-center space-x-4 ml-8 pr-4">
                         <p className="font-kodchasan text-texto text-[25px]">Clientes</p>
@@ -124,7 +135,7 @@ export default function Clientes() {
             <Sidebar />
             <div className="pt-[180px] flex justify-center items-start min-h-screen w-screen">
                 <div className="relative w-[1200px]">
-                    {clientes.map((cliente) => (
+                    {filteredClientes.map((cliente) => (
                         <div key={cliente.id_cliente} className="mb-4">
                             <h2>
                                 <button
