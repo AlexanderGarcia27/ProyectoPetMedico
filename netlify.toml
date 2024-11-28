@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/api/*"  # El prefijo '/api/' de tu frontend
-  to = "https://backend-veterinaria-ew45.onrender.com/:splat"  # Redirige a tu servidor de backend
-  status = 200      # Usamos un código 200 para indicar que es una redirección exitosa
-  force = true  
