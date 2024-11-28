@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 
 export function autenticarUsuario(usuario, contrasena) {
   // Realiza la petición al servidor para autenticar al usuario
-  return fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, {
+  return fetch('/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
