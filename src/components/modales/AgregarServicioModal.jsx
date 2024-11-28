@@ -34,7 +34,6 @@ export default function AgregarServicioModal({ isOpen, onClose, idCliente, idMas
                 alert(`Error: ${response.message || "Error desconocido"}`);
             }
         } catch (error) {
-            alert(`Hubo un error: ${error.message || "Error desconocido"}`);
         }
     };
 

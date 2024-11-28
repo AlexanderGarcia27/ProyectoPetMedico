@@ -17,8 +17,15 @@ export default function Inicio() {
     cargarDatos();
   }, []);
 
-  // Filtrar según la categoría seleccionada (clientes o mascotas)
+  // Obtener fecha y hora actuales
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0); // Restablecer la hora a las 00:00 para comparar solo la fecha
+
+  // Filtrar datos según la categoría seleccionada y la fecha actual
   const filteredData = tablaDatos.filter((fila) => {
+    const fechaRegistro = new Date(fila.fecha); // Asegúrate de que fila.fecha esté en formato de fecha
+    if (fechaRegistro < hoy || fechaRegistro > new Date()) return false; // Fuera del rango de hoy
+
     if (searchCategory === 'option1') {
       // Buscar solo en la columna de Clientes
       return `${fila.cliente.nombre} ${fila.cliente.apellidos}`
