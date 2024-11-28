@@ -106,7 +106,7 @@ export default function Clientes() {
     return (
         <>
             <nav className="border-gray-200 fixed top-0 left-0 w-full z-50 bg-fondo pt-4">
-                <div className="max-w-screen-xl flex items-center justify-between pl-4">
+                <div className="max-w-screen-xl flex items-center justify-between pl-4 flex-wrap">
                     <div className="flex items-center space-x-4 flex-grow">
                         <img src={logo1} className="h-16 w-16 rounded-full" alt="Flowbite Logo" />
                         <div className="flex flex-col items-start">
@@ -126,7 +126,7 @@ export default function Clientes() {
                             placeholder="Buscar cliente..."
                             />
                     </div>
-                    <div className="flex items-center space-x-4 ml-8 pr-4">
+                    <div className="flex items-center space-x-4 ml-8 pr-4 flex-wrap">
                         <p className="font-kodchasan text-texto text-[25px]">Clientes</p>
                         <img src={mas} className="h-6 w-6 rounded-full cursor-pointer" alt="Add" onClick={() => setIsAddClientModalOpen(true)} />
                     </div>
@@ -157,7 +157,7 @@ export default function Clientes() {
                                         </div>
                                     </span>
                                     {isOpen === cliente.id_cliente && (
-                                        <div className="flex items-center space-x-1 ml-2">
+                                        <div className="flex items-center space-x-1 ml-2 flex-wrap">
                                             <img
                                                 src={imgDelete}
                                                 className="h-9 w-9 rounded-full"

@@ -104,20 +104,10 @@ export default function Login() {
                     Log in
                   </button>
                   <br />
-                  <div className="text-sm text-center">
-                    <a href="#" className="font-semibold text-black hover:text-black">
-                      Sign in
-                    </a>
-                  </div>
                 </div>
               </div>
             </form>
             <br />
-            <div className="text-sm text-center">
-              <a href="#" className="font-semibold text-black hover:text-black">
-                Forgot password?
-              </a>
-            </div>
           </div>
         </div>
       </div>
